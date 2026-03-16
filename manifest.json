@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Reels Auto-Advance",
+  "version": "1.0.0",
+  "description": "Automatically advances to the next Instagram Reel when playback finishes for a smoother viewing flow.",
+  "minimum_chrome_version": "114",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://www.instagram.com/reels/*",
+    "https://www.instagram.com/reel/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Instagram Reels Auto-Advance"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.instagram.com/reels/*",
+        "https://www.instagram.com/reel/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

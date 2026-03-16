@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Instagram Reels Auto-Advance</title>
+    <style>
+      :root {
+        --bg: #f6f7f9;
+        --panel: #ffffff;
+        --panel-soft: #f8f9fc;
+        --text: #17191f;
+        --muted: #5d6472;
+        --line: #e5e8ef;
+        --accent: #0f5bd8;
+        --accent-strong: #0a4bb5;
+        --ok-bg: #e9f8ee;
+        --ok-text: #1d6d42;
+        --warn-bg: #fff4df;
+        --warn-text: #8a5d13;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 340px;
+        padding: 14px;
+        font-family: "Aptos", "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", "Noto Sans", sans-serif;
+        background: radial-gradient(130px 90px at 100% 0%, #eaf0ff 0%, transparent 100%),
+          var(--bg);
+        color: var(--text);
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 5px 18px rgba(17, 24, 39, 0.08);
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.35;
+        font-weight: 650;
+        letter-spacing: 0.1px;
+      }
+
+      .badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 9px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+
+      .badge.ready {
+        background: var(--ok-bg);
+        color: var(--ok-text);
+      }
+
+      .badge.notice {
+        background: var(--warn-bg);
+        color: var(--warn-text);
+      }
+
+      .status {
+        margin-top: 11px;
+        padding: 10px 11px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--panel-soft);
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+
+      .control {
+        margin-top: 13px;
+        padding: 11px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .label-title {
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .label-subtitle {
+        margin-top: 3px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .switch {
+        position: relative;
+        width: 46px;
+        height: 28px;
+        flex-shrink: 0;
+      }
+
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+        background: #cfd6e4;
+        border-radius: 999px;
+        transition: background-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .slider:before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(17, 24, 39, 0.3);
+        transition: transform 180ms ease;
+      }
+
+      .switch input:checked + .slider {
+        background: var(--accent);
+        box-shadow: inset 0 0 0 1px rgba(10, 75, 181, 0.25);
+      }
+
+      .switch input:checked + .slider:before {
+        transform: translateX(18px);
+      }
+
+      .note {
+        margin-top: 12px;
+        padding: 9px 0 0;
+        border-top: 1px dashed var(--line);
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      .note strong {
+        color: var(--accent-strong);
+        font-weight: 650;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="header">
+        <h1>Instagram Reels Auto-Advance</h1>
+        <span id="statusBadge" class="badge notice">Checking</span>
+      </div>
+
+      <div id="statusText" class="status">
+        Detecting current tab context.
+      </div>
+
+      <div class="control">
+        <div>
+          <div class="label-title">Auto-Advance</div>
+          <div id="toggleState" class="label-subtitle">Disabled</div>
+        </div>
+        <label class="switch" aria-label="Enable Auto-Advance">
+          <input type="checkbox" id="toggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="note">
+        <strong>Tip:</strong> Open an Instagram Reels page first, then enable Auto-Advance.
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

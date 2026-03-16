@@ -1,0 +1,14 @@
+{
+  "name": "instagram-reels-auto-advance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for secure release packaging of the Instagram Reels Auto-Advance extension.",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:prod": "node build.mjs --prod"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "terser": "^5.43.1"
+  }
+}
