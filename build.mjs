@@ -28,6 +28,15 @@ async function cleanDist() {
 async function copyStaticFiles() {
   await copyFile(path.join(srcDir, "manifest.json"), path.join(distDir, "manifest.json"));
   await copyFile(path.join(srcDir, "popup.html"), path.join(distDir, "popup.html"));
+  await mkdir(path.join(distDir, "icons"), { recursive: true });
+  await Promise.all(
+    ["16", "32", "48", "128"].map((size) =>
+      copyFile(
+        path.join(srcDir, "icons", `icon${size}.png`),
+        path.join(distDir, "icons", `icon${size}.png`)
+      )
+    )
+  );
 }
 
 function injectSecurityPlaceholders(code) {
